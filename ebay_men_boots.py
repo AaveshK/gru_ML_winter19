@@ -5,18 +5,25 @@ import scrapy
 class EbayMenBootsSpider(scrapy.Spider):
     name = 'ebay_men_boots'
     start_urls = ['https://www.ebay.com/b/Mens-Boots/11498/bn_56522']
+
+
     def parse(self, response):
+
+        print("procesing:"+response.url)
         #Extract data using css selectors
-        item_name=response.css('.s-item__title::text').extract()
-        price=response.css('.s-item__price::text').extract()
+        product_name=response.css('.s-item__title::text').extract()
+        price_range=response.css('.s-item__price::text').extract()
+        
+        row_data=zip(product_name,price_range)
 
         #Making extracted data row wise
-        for item in zip(item_name,price):
-        #create a dictionary to store the scraped info
+        for item in row_data:
+            #create a dictionary to store the scraped info
             scraped_info = {
-                'item_name': item[0], #item[0] means product in the list and so on,, i index tells what value to assign
-                'price' : item[1],
+                #key:value
+                'product_name' : item[0], #item[0] means product in the list and so on, index tells what value to assign
+                'price_range' : item[1],
             }
 
-        #yiled or give the scraped info to scrapy
-        yield scraped_info
+            #yield or give the scraped info to scrapy
+            yield scraped_info
