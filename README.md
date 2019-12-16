@@ -12,3 +12,10 @@ Listing processes and/or killing tasks
 
 Task 2:
 Look for similar products on different e-commerce sites(if available) and return the best deal for customers.
+
+Task 3:
+Case Study(Education System)
+
+Task 2:
+Data collection(scraping) : From EBay
+Data collected contains product name and price.
